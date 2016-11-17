@@ -42,8 +42,8 @@ Public Class Form1
             Button_SelDir.Enabled = False
             Button_SelPs.Enabled = False
             Button_Clear.Enabled = False
-            ToolStripStatusLabel1.Text = "服务已启动"
-            ToolStripStatusLabel1.ForeColor = Color.Green
+            ToolStripStatusLabel3.Text = "服务已启动"
+            ToolStripStatusLabel3.ForeColor = Color.Green
         Else
             MsgBox("请选择Photoshop目录！！！", MsgBoxStyle.OkOnly, "注意")
         End If
@@ -57,8 +57,8 @@ Public Class Form1
         Button_SelDir.Enabled = True
         Button_SelPs.Enabled = True
         Button_Clear.Enabled = True
-        ToolStripStatusLabel1.Text = "服务未启动"
-        ToolStripStatusLabel1.ForeColor = Color.Red
+        ToolStripStatusLabel3.Text = "服务未启动"
+        ToolStripStatusLabel3.ForeColor = Color.Red
     End Sub
 
     Private Sub NotifyIcon1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
@@ -113,12 +113,12 @@ Public Class Form1
                 FSize = FSize / 1024
                 If FSize >= 1000 Then
                     FSize = FSize / 1024
-                    ToolStripStatusLabel2.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "GB"
+                    ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "GB"
                 Else
-                    ToolStripStatusLabel2.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "MB"
+                    ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "MB"
                 End If
             Else
-                ToolStripStatusLabel2.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "KB"
+                ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "KB"
             End If
 
         End If

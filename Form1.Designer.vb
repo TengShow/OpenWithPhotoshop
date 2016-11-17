@@ -36,7 +36,6 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button_Clear = New System.Windows.Forms.Button()
         Me.Button_Save = New System.Windows.Forms.Button()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FB = New System.Windows.Forms.FolderBrowserDialog()
@@ -45,8 +44,11 @@ Partial Class Form1
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox_Ext = New System.Windows.Forms.TextBox()
-        Me.StatusStrip1.SuspendLayout()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.FS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -160,15 +162,6 @@ Partial Class Form1
         Me.Button_Save.Text = "保存设置"
         Me.Button_Save.UseVisualStyleBackColor = True
         '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 284)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(532, 22)
-        Me.StatusStrip1.SizingGrip = False
-        Me.StatusStrip1.TabIndex = 12
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.AutoSize = False
@@ -219,14 +212,37 @@ Partial Class Form1
         Me.TextBox_Ext.TabIndex = 14
         Me.TextBox_Ext.Text = ".jpeg.jpg.png.bmp.gif.psd"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel3, Me.ToolStripStatusLabel4})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 284)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(532, 22)
+        Me.StatusStrip1.TabIndex = 15
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel3
+        '
+        Me.ToolStripStatusLabel3.AutoSize = False
+        Me.ToolStripStatusLabel3.ForeColor = System.Drawing.Color.Red
+        Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
+        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(90, 17)
+        Me.ToolStripStatusLabel3.Text = "服务未启动"
+        '
+        'ToolStripStatusLabel4
+        '
+        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
+        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(187, 17)
+        Me.ToolStripStatusLabel4.Text = "目录共 0 个文件，总大小 0.00KB"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(532, 306)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.TextBox_Ext)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Button_Save)
         Me.Controls.Add(Me.Button_Clear)
         Me.Controls.Add(Me.Label3)
@@ -245,9 +261,9 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Open With Photoshop"
+        CType(Me.FS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.FS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -264,7 +280,6 @@ Partial Class Form1
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button_Clear As System.Windows.Forms.Button
     Friend WithEvents Button_Save As System.Windows.Forms.Button
-    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FB As System.Windows.Forms.FolderBrowserDialog
@@ -273,5 +288,8 @@ Partial Class Form1
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
     Friend WithEvents TextBox_Ext As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel4 As System.Windows.Forms.ToolStripStatusLabel
 
 End Class
