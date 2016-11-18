@@ -139,7 +139,7 @@ Public Class Form1
             TextBox_Dir.Text = ""
             MsgBox("请勿选择驱动器！", MsgBoxStyle.OkOnly, "注意")
         Else
-            Dim Fso As New FileSystemObject
+            Dim Fso As New Scripting.FileSystemObject
             Dim FNum As Integer = 0
             Dim FSize As Double = 0
             FNum = Fso.GetFolder(FPath).Files.Count
