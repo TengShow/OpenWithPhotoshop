@@ -2,6 +2,8 @@
 Imports System.IO
 
 Public Class Form1
+    Dim AutoRun As Boolean = False
+    Dim AutoMin As Boolean = False
     '读ini API函数
     Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Int32, ByVal lpFileName As String) As Int32
     '写ini API函数
@@ -29,23 +31,44 @@ Public Class Form1
         If TextBox_Dir.Text <> "" Then
             Button_Start.Enabled = True
             Button_Clear.Enabled = True
+            ToolStripMenuItem_Start.Enabled = True
             GetFNumAndFSize(TextBox_Dir.Text)
+            If AutoRun = True Then
+                Call Button_Start_Click(Nothing, Nothing)
+            End If
         End If
     End Sub
 
     Private Sub Button_Start_Click(sender As Object, e As EventArgs) Handles Button_Start.Click
         If TextBox_Ps.Text <> "" Then
-            FS.Path = TextBox_Dir.Text
-            FS.EnableRaisingEvents = True
-            Button_Stop.Enabled = True
-            Button_Start.Enabled = False
-            Button_SelDir.Enabled = False
-            Button_SelPs.Enabled = False
-            Button_Clear.Enabled = False
-            ToolStripStatusLabel3.Text = "服务已启动"
-            ToolStripStatusLabel3.ForeColor = Color.Green
+            If TextBox_Dir.Text <> "" Then
+                If My.Computer.FileSystem.FileExists(TextBox_Ps.Text) = True Then
+                    If My.Computer.FileSystem.DirectoryExists(TextBox_Dir.Text) = True Then
+                        FS.Path = TextBox_Dir.Text
+                        FS.EnableRaisingEvents = True
+                        Button_Stop.Enabled = True
+                        ToolStripMenuItem_Stop.Enabled = True
+                        ToolStripMenuItem_Start.Enabled = False
+                        Button_Start.Enabled = False
+                        Button_SelDir.Enabled = False
+                        Button_SelPs.Enabled = False
+                        Button_Clear.Enabled = False
+                        ToolStripStatusLabel_State.Text = "服务已启动"
+                        ToolStripStatusLabel_State.ForeColor = Color.Green
+                        If AutoMin = True Then
+                            Me.WindowState = FormWindowState.Minimized
+                        End If
+                    Else
+                        MsgBox("目录不存在，请重新选择！", MsgBoxStyle.OkOnly, "注意")
+                    End If
+                Else
+                    MsgBox("Photoshop路径设置错误，请重新选择！", MsgBoxStyle.OkOnly, "注意")
+                End If
+            Else
+                MsgBox("请选择图片目录！！！", MsgBoxStyle.OkOnly, "注意")
+            End If
         Else
-            MsgBox("请选择Photoshop目录！！！", MsgBoxStyle.OkOnly, "注意")
+            MsgBox("请选择Photoshop路径！！！", MsgBoxStyle.OkOnly, "注意")
         End If
 
     End Sub
@@ -57,8 +80,10 @@ Public Class Form1
         Button_SelDir.Enabled = True
         Button_SelPs.Enabled = True
         Button_Clear.Enabled = True
-        ToolStripStatusLabel3.Text = "服务未启动"
-        ToolStripStatusLabel3.ForeColor = Color.Red
+        ToolStripMenuItem_Start.Enabled = True
+        ToolStripMenuItem_Stop.Enabled = False
+        ToolStripStatusLabel_State.Text = "服务未启动"
+        ToolStripStatusLabel_State.ForeColor = Color.Red
     End Sub
 
     Private Sub NotifyIcon1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
@@ -71,15 +96,25 @@ Public Class Form1
         If TextBox_Ps.Text <> "" Then
             If TextBox_Dir.Text <> "" Then
                 Button_Start.Enabled = True
+                Button_Clear.Enabled = True
+                ToolStripMenuItem_Start.Enabled = True
                 GetFNumAndFSize(TextBox_Dir.Text)
+                If AutoRun = True Then
+                    Call Button_Start_Click(Nothing, Nothing)
+                End If
             End If
+        End If
+    End Sub
+
+    Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If CheckBox_AutoMin.Checked = True Then
+            Me.Hide()
         End If
     End Sub
 
     Private Sub Form1_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
         If Me.WindowState = FormWindowState.Minimized Then
             Me.Hide()
-            NotifyIcon1.Visible = True
         End If
     End Sub
 
@@ -88,7 +123,7 @@ Public Class Form1
         FExt = GetFileExt(e.Name)
         Dim PicExt As String = TextBox_Ext.Text
         If InStr(PicExt, FExt, Microsoft.VisualBasic.CompareMethod.Text) > 0 Then
-            ListBox_Log.Items.Add("文件名：" & e.Name & "  " & "时间：" & My.Computer.Clock.LocalTime)
+            ListBox_Log.Items.Add("文件：" & e.Name & "  " & "时间：" & My.Computer.Clock.LocalTime)
             GetFNumAndFSize(TextBox_Dir.Text)
             NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & e.Name, ToolTipIcon.Info)
             Dim PsPath As String = TextBox_Ps.Text
@@ -113,12 +148,12 @@ Public Class Form1
                 FSize = FSize / 1024
                 If FSize >= 1000 Then
                     FSize = FSize / 1024
-                    ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "GB"
+                    ToolStripStatusLabel_FileSize.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "GB"
                 Else
-                    ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "MB"
+                    ToolStripStatusLabel_FileSize.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "MB"
                 End If
             Else
-                ToolStripStatusLabel4.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "KB"
+                ToolStripStatusLabel_FileSize.Text = "目录共 " & FNum & " 个文件，总大小 " & Format(FSize, "0.00") & "KB"
             End If
 
         End If
@@ -144,7 +179,7 @@ Public Class Form1
     End Function
 
     Private Sub Button_Clear_Click(sender As Object, e As EventArgs) Handles Button_Clear.Click
-        If MsgBox("是否删除所选目录下所有文件（不包括文件夹）？", MsgBoxStyle.OkCancel, "删除") = MsgBoxResult.Ok Then
+        If MsgBox("是否删除所选目录下所有文件（不包括文件夹）？" & Chr(10) & "删除的文件将被移入回收站中！", MsgBoxStyle.OkCancel, "删除") = MsgBoxResult.Ok Then
             Dim curDir As New DirectoryInfo(TextBox_Dir.Text)
             Dim fileInfo As FileInfo()
             fileInfo = curDir.GetFiles()
@@ -156,6 +191,7 @@ Public Class Form1
             Next
             ListBox_Log.Items.Clear()
         End If
+        GetFNumAndFSize(TextBox_Dir.Text)
     End Sub
 
     Sub LoadTheConfig()
@@ -170,6 +206,20 @@ Public Class Form1
             TextBox_Ps.Text = GetINI("Config", "PsPath", "", ConfigPath)
             TextBox_Dir.Text = GetINI("Config", "TempDir", "", ConfigPath)
             TextBox_Ext.Text = GetINI("Config", "Extension", "", ConfigPath)
+            If GetINI("Config", "AutoRun", "", ConfigPath) = 1 Then
+                CheckBox_AutoRun.Checked = True
+            ElseIf GetINI("Config", "AutoRun", "", ConfigPath) = 0 Then
+                CheckBox_AutoRun.Checked = False
+            Else
+                CheckBox_AutoRun.Checked = False
+            End If
+            If GetINI("Config", "AutoMin", "", ConfigPath) = 1 Then
+                CheckBox_AutoMin.Checked = True
+            ElseIf GetINI("Config", "AutoMin", "", ConfigPath) = 0 Then
+                CheckBox_AutoMin.Checked = False
+            Else
+                CheckBox_AutoMin.Checked = False
+            End If
         End If
 
     End Sub
@@ -181,9 +231,48 @@ Public Class Form1
             WriteINI("Config", "PsPath", TextBox_Ps.Text, ConfigPath)
             WriteINI("Config", "TempDir", TextBox_Dir.Text, ConfigPath)
             WriteINI("Config", "Extension", TextBox_Ext.Text, ConfigPath)
+            If CheckBox_AutoRun.Checked = True Then
+                WriteINI("Config", "AutoRun", 1, ConfigPath)
+            Else
+                WriteINI("Config", "AutoRun", 0, ConfigPath)
+            End If
+            If CheckBox_AutoMin.Checked = True Then
+                WriteINI("Config", "AutoMin", 1, ConfigPath)
+            Else
+                WriteINI("Config", "AutoMin", 0, ConfigPath)
+            End If
             MsgBox("配置保存完毕！", MsgBoxStyle.OkOnly, "成功")
         Catch ex As Exception
             MsgBox("发生未知错误，请手动编辑！", MsgBoxStyle.OkOnly, "失败")
         End Try
+    End Sub
+
+    Private Sub ToolStripMenuItem_Start_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_Start.Click
+        Call Button_Start_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub ToolStripMenuItem_Stop_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_Stop.Click
+        Call Button_Stop_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub ToolStripMenuItem_Exit_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_Exit.Click
+        Call Button_Stop_Click(Nothing, Nothing)
+        Me.Close()
+    End Sub
+
+    Private Sub CheckBox_AutoRun_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_AutoRun.CheckedChanged
+        If CheckBox_AutoRun.Checked = True Then
+            AutoRun = True
+        Else
+            AutoRun = False
+        End If
+    End Sub
+
+    Private Sub CheckBox_AutoMin_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_AutoMin.CheckedChanged
+        If CheckBox_AutoMin.Checked = True Then
+            AutoMin = True
+        Else
+            AutoMin = False
+        End If
     End Sub
 End Class

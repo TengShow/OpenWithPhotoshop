@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' 查看程序集特性的值
 
-<Assembly: AssemblyTitle("OpenWithPhotoshop")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("Open With Photoshop")> 
+<Assembly: AssemblyDescription("Open With Photoshop")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("OpenWithPhotoshop")> 
+<Assembly: AssemblyProduct("Open With Photoshop")> 
 <Assembly: AssemblyCopyright("Copyright ©  2016")> 
 <Assembly: AssemblyTrademark("")> 
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' 方法是按如下所示使用“*”:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.2.0.0")> 
+<Assembly: AssemblyFileVersion("1.2.0.0")> 

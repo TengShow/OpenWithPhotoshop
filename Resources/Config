@@ -2,3 +2,5 @@
 PsPath=
 TempDir=
 Extension=.jpeg.jpg.png.bmp.gif.psd
+AutoRun=0
+AutoMin=0

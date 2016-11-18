@@ -8,19 +8,19 @@ C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\Ope
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.exe
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.xml
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.pdb
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.exe.config
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.exe.manifest
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.application
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.exe
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.pdb
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\OpenWithPhotoshop.xml
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe.manifest
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.application
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.pdb
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.xml
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Interop.Scripting.dll
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.vbproj.ResolveComReference.cache
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.Form1.resources
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.Resources.resources
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.vbproj.GenerateResource.Cache
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.exe.manifest
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.application
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.exe
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.xml
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.pdb
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.exe.manifest
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.application
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.exe
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.xml
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.pdb
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe.config

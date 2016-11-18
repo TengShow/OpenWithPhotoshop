@@ -36,18 +36,23 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button_Clear = New System.Windows.Forms.Button()
         Me.Button_Save = New System.Windows.Forms.Button()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.FB = New System.Windows.Forms.FolderBrowserDialog()
         Me.FS = New System.IO.FileSystemWatcher()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem_Start = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem_Stop = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem_Exit = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox_Ext = New System.Windows.Forms.TextBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel_State = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel_FileSize = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.CheckBox_AutoRun = New System.Windows.Forms.CheckBox()
+        Me.CheckBox_AutoMin = New System.Windows.Forms.CheckBox()
         CType(Me.FS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -108,7 +113,7 @@ Partial Class Form1
         'Button_Start
         '
         Me.Button_Start.Enabled = False
-        Me.Button_Start.Location = New System.Drawing.Point(114, 107)
+        Me.Button_Start.Location = New System.Drawing.Point(253, 107)
         Me.Button_Start.Name = "Button_Start"
         Me.Button_Start.Size = New System.Drawing.Size(75, 38)
         Me.Button_Start.TabIndex = 0
@@ -118,7 +123,7 @@ Partial Class Form1
         'Button_Stop
         '
         Me.Button_Stop.Enabled = False
-        Me.Button_Stop.Location = New System.Drawing.Point(214, 107)
+        Me.Button_Stop.Location = New System.Drawing.Point(350, 107)
         Me.Button_Stop.Name = "Button_Stop"
         Me.Button_Stop.Size = New System.Drawing.Size(75, 38)
         Me.Button_Stop.TabIndex = 1
@@ -162,20 +167,6 @@ Partial Class Form1
         Me.Button_Save.Text = "保存设置"
         Me.Button_Save.UseVisualStyleBackColor = True
         '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.AutoSize = False
-        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.Red
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(90, 17)
-        Me.ToolStripStatusLabel1.Text = "服务未启动"
-        '
-        'ToolStripStatusLabel2
-        '
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(187, 17)
-        Me.ToolStripStatusLabel2.Text = "目录共 0 个文件，总大小 0.00KB"
-        '
         'FS
         '
         Me.FS.EnableRaisingEvents = True
@@ -190,10 +181,37 @@ Partial Class Form1
         '
         'NotifyIcon1
         '
+        Me.NotifyIcon1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Tag = "Open With Photoshop"
         Me.NotifyIcon1.Text = "Open With Photoshop"
         Me.NotifyIcon1.Visible = True
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem_Start, Me.ToolStripMenuItem_Stop, Me.ToolStripMenuItem_Exit})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(125, 70)
+        '
+        'ToolStripMenuItem_Start
+        '
+        Me.ToolStripMenuItem_Start.Enabled = False
+        Me.ToolStripMenuItem_Start.Name = "ToolStripMenuItem_Start"
+        Me.ToolStripMenuItem_Start.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem_Start.Text = "开始监控"
+        '
+        'ToolStripMenuItem_Stop
+        '
+        Me.ToolStripMenuItem_Stop.Enabled = False
+        Me.ToolStripMenuItem_Stop.Name = "ToolStripMenuItem_Stop"
+        Me.ToolStripMenuItem_Stop.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem_Stop.Text = "停止监控"
+        '
+        'ToolStripMenuItem_Exit
+        '
+        Me.ToolStripMenuItem_Exit.Name = "ToolStripMenuItem_Exit"
+        Me.ToolStripMenuItem_Exit.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem_Exit.Text = "退出"
         '
         'Label4
         '
@@ -214,32 +232,56 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel3, Me.ToolStripStatusLabel4})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel_State, Me.ToolStripStatusLabel_FileSize})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 284)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(532, 22)
+        Me.StatusStrip1.SizingGrip = False
         Me.StatusStrip1.TabIndex = 15
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'ToolStripStatusLabel3
+        'ToolStripStatusLabel_State
         '
-        Me.ToolStripStatusLabel3.AutoSize = False
-        Me.ToolStripStatusLabel3.ForeColor = System.Drawing.Color.Red
-        Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(90, 17)
-        Me.ToolStripStatusLabel3.Text = "服务未启动"
+        Me.ToolStripStatusLabel_State.AutoSize = False
+        Me.ToolStripStatusLabel_State.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
+        Me.ToolStripStatusLabel_State.ForeColor = System.Drawing.Color.Red
+        Me.ToolStripStatusLabel_State.Name = "ToolStripStatusLabel_State"
+        Me.ToolStripStatusLabel_State.Size = New System.Drawing.Size(120, 17)
+        Me.ToolStripStatusLabel_State.Text = "服务未启动"
         '
-        'ToolStripStatusLabel4
+        'ToolStripStatusLabel_FileSize
         '
-        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(187, 17)
-        Me.ToolStripStatusLabel4.Text = "目录共 0 个文件，总大小 0.00KB"
+        Me.ToolStripStatusLabel_FileSize.Name = "ToolStripStatusLabel_FileSize"
+        Me.ToolStripStatusLabel_FileSize.Size = New System.Drawing.Size(187, 17)
+        Me.ToolStripStatusLabel_FileSize.Text = "目录共 0 个文件，总大小 0.00KB"
+        '
+        'CheckBox_AutoRun
+        '
+        Me.CheckBox_AutoRun.AutoSize = True
+        Me.CheckBox_AutoRun.Location = New System.Drawing.Point(73, 107)
+        Me.CheckBox_AutoRun.Name = "CheckBox_AutoRun"
+        Me.CheckBox_AutoRun.Size = New System.Drawing.Size(72, 16)
+        Me.CheckBox_AutoRun.TabIndex = 17
+        Me.CheckBox_AutoRun.Text = "自动运行"
+        Me.CheckBox_AutoRun.UseVisualStyleBackColor = True
+        '
+        'CheckBox_AutoMin
+        '
+        Me.CheckBox_AutoMin.AutoSize = True
+        Me.CheckBox_AutoMin.Location = New System.Drawing.Point(151, 107)
+        Me.CheckBox_AutoMin.Name = "CheckBox_AutoMin"
+        Me.CheckBox_AutoMin.Size = New System.Drawing.Size(96, 16)
+        Me.CheckBox_AutoMin.TabIndex = 18
+        Me.CheckBox_AutoMin.Text = "运行后最小化"
+        Me.CheckBox_AutoMin.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(532, 306)
+        Me.Controls.Add(Me.CheckBox_AutoMin)
+        Me.Controls.Add(Me.CheckBox_AutoRun)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.TextBox_Ext)
         Me.Controls.Add(Me.Label4)
@@ -262,6 +304,7 @@ Partial Class Form1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Open With Photoshop"
         CType(Me.FS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -280,8 +323,6 @@ Partial Class Form1
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button_Clear As System.Windows.Forms.Button
     Friend WithEvents Button_Save As System.Windows.Forms.Button
-    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FB As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents FS As System.IO.FileSystemWatcher
     Friend WithEvents OFD As System.Windows.Forms.OpenFileDialog
@@ -289,7 +330,13 @@ Partial Class Form1
     Friend WithEvents TextBox_Ext As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
-    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel4 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel_State As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel_FileSize As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem_Start As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem_Stop As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem_Exit As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CheckBox_AutoMin As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox_AutoRun As System.Windows.Forms.CheckBox
 
 End Class
