@@ -123,11 +123,15 @@ Public Class Form1
         FExt = GetFileExt(e.Name)
         Dim PicExt As String = TextBox_Ext.Text
         If InStr(PicExt, FExt, Microsoft.VisualBasic.CompareMethod.Text) > 0 Then
-            ListBox_Log.Items.Add("文件：" & e.Name & "  " & "时间：" & My.Computer.Clock.LocalTime)
+            Dim OldFileName As String = e.Name
+            Dim NewFileName As String = RandomName() & "." & FExt
+            'MsgBox(OldFileName & "qqq" & NewFileName)
+            Rename(e.FullPath, TextBox_Dir.Text & "\" & NewFileName)
+            ListBox_Log.Items.Add("文件：" & NewFileName & "  " & "时间：" & My.Computer.Clock.LocalTime)
             GetFNumAndFSize(TextBox_Dir.Text)
-            NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & e.Name, ToolTipIcon.Info)
+            NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & NewFileName, ToolTipIcon.Info)
             Dim PsPath As String = TextBox_Ps.Text
-            Dim PicPath As String = e.FullPath
+            Dim PicPath As String = TextBox_Dir.Text & "\" & NewFileName
             Shell(PsPath & " " & PicPath)
         End If
     End Sub
@@ -275,4 +279,10 @@ Public Class Form1
             AutoMin = False
         End If
     End Sub
+
+    Function RandomName() As String
+        Dim rand = New System.Random().Next(100, 999).ToString()
+        Dim time = Date.Now.ToString("yyyymmddhhmmss")
+        RandomName = time & rand
+    End Function
 End Class

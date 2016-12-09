@@ -8,6 +8,7 @@ C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\Ope
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.exe
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.xml
 C:\Users\Helory\AppData\Local\Temporary Projects\OpenWithPhotoshop\obj\Debug\OpenWithPhotoshop.pdb
+D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe.config
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe.manifest
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.application
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe
@@ -23,4 +24,3 @@ D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWith
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.exe
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.xml
 D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\obj\Debug\Open With Photoshop.pdb
-D:\Users\Helory\Documents\Visual Studio 2012\Projects\OpenWithPhotoshop\OpenWithPhotoshop\bin\Debug\Open With Photoshop.exe.config

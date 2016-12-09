@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Open With Photoshop.exe" size="4364288">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Open With Photoshop.exe" size="4364800">
       <assemblyIdentity name="Open With Photoshop" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YTA3BW6wIiCOS807w3S075rInC0Uu9OjwxT2AEgeSj0=</dsig:DigestValue>
+        <dsig:DigestValue>ZXivjOXEk6Ktum5k8rewWxEIlLxZw+1lPAF1z+z7SQM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
