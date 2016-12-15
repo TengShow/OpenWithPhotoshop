@@ -51,6 +51,7 @@ Partial Class Form1
         Me.ToolStripStatusLabel_FileSize = New System.Windows.Forms.ToolStripStatusLabel()
         Me.CheckBox_AutoRun = New System.Windows.Forms.CheckBox()
         Me.CheckBox_AutoMin = New System.Windows.Forms.CheckBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.FS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -275,6 +276,10 @@ Partial Class Form1
         Me.CheckBox_AutoMin.Text = "运行后最小化"
         Me.CheckBox_AutoMin.UseVisualStyleBackColor = True
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -338,5 +343,6 @@ Partial Class Form1
     Friend WithEvents ToolStripMenuItem_Exit As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CheckBox_AutoMin As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox_AutoRun As System.Windows.Forms.CheckBox
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 
 End Class

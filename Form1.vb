@@ -4,6 +4,9 @@ Imports System.IO
 Public Class Form1
     Dim AutoRun As Boolean = False
     Dim AutoMin As Boolean = False
+    Dim TimerFileName As String
+    Dim TimerFullPath As String
+    Dim TimerFileExt As String
     '读ini API函数
     Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Int32, ByVal lpFileName As String) As Int32
     '写ini API函数
@@ -123,16 +126,25 @@ Public Class Form1
         FExt = GetFileExt(e.Name)
         Dim PicExt As String = TextBox_Ext.Text
         If InStr(PicExt, FExt, Microsoft.VisualBasic.CompareMethod.Text) > 0 Then
-            Dim OldFileName As String = e.Name
-            Dim NewFileName As String = RandomName() & "." & FExt
-            'MsgBox(OldFileName & "qqq" & NewFileName)
-            Rename(e.FullPath, TextBox_Dir.Text & "\" & NewFileName)
-            ListBox_Log.Items.Add("文件：" & NewFileName & "  " & "时间：" & My.Computer.Clock.LocalTime)
-            GetFNumAndFSize(TextBox_Dir.Text)
-            NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & NewFileName, ToolTipIcon.Info)
-            Dim PsPath As String = TextBox_Ps.Text
-            Dim PicPath As String = TextBox_Dir.Text & "\" & NewFileName
-            Shell(PsPath & " " & PicPath)
+            'Dim OldFileName As String = e.Name
+            'Dim NewFileName As String = RandomName() & "." & FExt
+            ''MsgBox(OldFileName & "qqq" & NewFileName)
+            'Try
+            '    Rename(e.FullPath, TextBox_Dir.Text & "\" & NewFileName)
+            '    ListBox_Log.Items.Add("文件：" & NewFileName & "  " & "时间：" & My.Computer.Clock.LocalTime)
+            '    GetFNumAndFSize(TextBox_Dir.Text)
+            '    NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & NewFileName, ToolTipIcon.Info)
+            '    Dim PsPath As String = TextBox_Ps.Text
+            '    Dim PicPath As String = TextBox_Dir.Text & "\" & NewFileName
+            '    Shell(PsPath & " " & PicPath)
+            'Catch ex As Exception
+            '    NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "文件正在下载/复制中……" & Chr(10) & "3秒后重试……", ToolTipIcon.Error)
+            '    Timer1.Interval = 3000
+            '    Timer1.Enabled = True
+            '    TimerOldName = e.Name
+            'End Try
+            OpenWithPs(e.FullPath, e.Name, FExt)
+
         End If
     End Sub
 
@@ -285,4 +297,31 @@ Public Class Form1
         Dim time = Date.Now.ToString("yyyymmddhhmmss")
         RandomName = time & rand
     End Function
+
+    Sub OpenWithPs(FullPath As String, FileName As String, FileExt As String)
+        Dim OldFileName As String = FileName
+        Dim NewFileName As String = RandomName() & "." & FileExt
+        'MsgBox(OldFileName & "qqq" & NewFileName)
+        Try
+            Rename(FullPath, TextBox_Dir.Text & "\" & NewFileName)
+            ListBox_Log.Items.Add("文件：" & NewFileName & "  " & "时间：" & My.Computer.Clock.LocalTime)
+            GetFNumAndFSize(TextBox_Dir.Text)
+            NotifyIcon1.ShowBalloonTip(3000, "Open With Photoshop", "正在打开" & NewFileName, ToolTipIcon.Info)
+            Dim PsPath As String = TextBox_Ps.Text
+            Dim PicPath As String = TextBox_Dir.Text & "\" & NewFileName
+            Shell(PsPath & " " & PicPath)
+        Catch ex As Exception
+            NotifyIcon1.ShowBalloonTip(1500, "Open With Photoshop", "文件正在下载/复制中……" & Chr(10) & "2秒后重试……", ToolTipIcon.Error)
+            TimerFileName = FileName
+            TimerFullPath = FullPath
+            TimerFileExt = FileExt
+            Timer1.Interval = 2000
+            Timer1.Enabled = True
+        End Try
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Timer1.Enabled = False
+        OpenWithPs(TimerFullPath, TimerFileName, TimerFileExt)
+    End Sub
 End Class
